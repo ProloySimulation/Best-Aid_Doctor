@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -73,6 +74,22 @@ public class MainActivity extends AppCompatActivity {
 
         seeQuestions();
 
+        mList.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mList, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Question question = questionList.get(position);
+                //Toast.makeText(getApplicationContext(), movie.getDelivery_id() + " is selected!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), OurWebsite.class);
+                intent.putExtra("dlink",question.getDescription());
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
     }
 
