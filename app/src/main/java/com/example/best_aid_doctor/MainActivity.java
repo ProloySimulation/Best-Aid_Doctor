@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mList;
     String postN = "post_question";
     TextView tvClick ;
+    String key = "post_comment";
 
     private LinearLayoutManager linearLayoutManager;
     private DividerItemDecoration dividerItemDecoration;
-    private List<Question> questionList;
+    private ArrayList<Question> questionList;
     private RecyclerView.Adapter adapter;
 
 
@@ -74,26 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         seeQuestions();
 
-        mList.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mList, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Question question = questionList.get(position);
-                //Toast.makeText(getApplicationContext(), movie.getDelivery_id() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), OurWebsite.class);
-                intent.putExtra("dlink",question.getDescription());
-
-                startActivity(intent);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-
     }
-
-
 
     private void seeQuestions() {
 
@@ -150,4 +133,5 @@ public class MainActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(stringRequest);
     }
+
 }

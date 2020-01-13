@@ -6,6 +6,7 @@ public class Question {
 
     public Question(String description) {
         this.description = description;
+
     }
 
     public String getDescription() {
