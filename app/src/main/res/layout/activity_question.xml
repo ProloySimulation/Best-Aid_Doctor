@@ -23,7 +23,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_margin="15sp"
                     android:id="@+id/tvQuestionsSingle"
                     android:text="আমার অনেকদিন ধরে কাশীর সমস্যা আমি এখন কি করতে পারি ? "/>
 
@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rlQuestion"
+                android:layout_margin="15sp"
                 android:id="@+id/llAnswer"
                 android:orientation="vertical">
 
@@ -48,12 +49,12 @@
                     android:layout_height="wrap_content"
                     android:text="Submit"
                     android:id="@+id/btnAnsSubmit"/>
-                <TextView
+           <!--     <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ID"
                     android:textSize="20dp"
-                    android:id="@+id/tvId"/>
+                    android:id="@+id/tvId"/>-->
 
 
             </LinearLayout>

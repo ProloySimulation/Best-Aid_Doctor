@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mList;
     String postN = "post_question";
+    String comment ;
     TextView tvClick ;
     String key = "post_comment";
 
@@ -99,10 +100,21 @@ public class MainActivity extends AppCompatActivity {
 
                                 JSONObject dataobj = dataArray.getJSONObject(i);
 
+
                                 String questions = dataobj.getString("questions_description");
                                 String id = dataobj.getString("questions_id");
-                                Question question = new Question(questions,id);
+                                JSONArray commentArray = dataobj.getJSONArray("comments");
+                                for(int j=0;j<commentArray.length();j++)
+                                {
+                                    JSONObject commentobj = commentArray.getJSONObject(j);
+                                    comment = commentobj.getString("comment_description");
+                                    Toast.makeText(MainActivity.this, comment, Toast.LENGTH_SHORT).show();
+
+
+                                }
+                                Question question = new Question(questions,id,comment);
                                 questionList.add(question);
+
                             }
 
 

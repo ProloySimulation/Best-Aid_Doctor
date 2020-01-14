@@ -2,11 +2,20 @@ package com.example.best_aid_doctor.Model;
 
 public class Question {
 
-    String description , id ;
+    String description , id , comment;
 
-    public Question(String description , String id) {
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Question(String description , String id , String comment) {
         this.description = description;
         this.id = id ;
+        this.comment = comment ;
 
     }
 

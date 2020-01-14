@@ -43,11 +43,11 @@ public class ActivityQuestion extends AppCompatActivity {
         id = intent.getStringExtra("id");
 
         TextView tvQuestion = findViewById(R.id.tvQuestionsSingle);
-        TextView tvId = findViewById(R.id.tvId);
+ //       TextView tvId = findViewById(R.id.tvId);
         etAns = findViewById(R.id.etAnswer);
         btnAnsSubmit = findViewById(R.id.btnAnsSubmit);
         tvQuestion.setText(des);
-        tvId.setText(id);
+     //   tvId.setText(id);
 
         btnAnsSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

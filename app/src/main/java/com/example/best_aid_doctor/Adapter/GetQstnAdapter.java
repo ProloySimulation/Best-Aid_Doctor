@@ -41,6 +41,7 @@ public class GetQstnAdapter extends RecyclerView.Adapter <GetQstnAdapter.ViewHol
         Question question = questionList.get(position);
 
         holder.tvQuestion.setText(question.getDescription());
+        holder.tvComment.setText(question.getComment());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +64,7 @@ public class GetQstnAdapter extends RecyclerView.Adapter <GetQstnAdapter.ViewHol
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvQuestion;
+        public TextView tvQuestion , tvComment;
         LinearLayout parentLayout ;
 
         public ViewHolder(View itemView) {
@@ -71,6 +72,7 @@ public class GetQstnAdapter extends RecyclerView.Adapter <GetQstnAdapter.ViewHol
 
             tvQuestion = itemView.findViewById(R.id.tvQuestions);
             parentLayout = itemView.findViewById(R.id.parentLayout);
+            tvComment = itemView.findViewById(R.id.tvComment);
 
 
         }
