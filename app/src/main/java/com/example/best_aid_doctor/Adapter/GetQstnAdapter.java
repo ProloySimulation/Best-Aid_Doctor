@@ -48,6 +48,7 @@ public class GetQstnAdapter extends RecyclerView.Adapter <GetQstnAdapter.ViewHol
                 Intent intent = new Intent(context, ActivityQuestion.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("question", questionList.get(position).getDescription());
+                intent.putExtra("id", questionList.get(position).getId());
                 context.startActivity(intent);
 
             }

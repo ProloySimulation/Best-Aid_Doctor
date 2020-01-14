@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:id="@+id/tvQuestions"
-                    android:text="আমার অনেকদিন ধরে কাশীর সমস্যা আমি এখন কি করতে পারি ? "/>
+                    android:text="আমার অনেকদিন ধরে কাশীর সমস্যা আমি এখন কি করতে পারি ?"/>
 
                 <TextView
                     android:layout_width="wrap_content"

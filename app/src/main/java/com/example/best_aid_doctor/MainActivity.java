@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
                                 JSONObject dataobj = dataArray.getJSONObject(i);
 
                                 String questions = dataobj.getString("questions_description");
-                                Question question = new Question(questions);
+                                String id = dataobj.getString("questions_id");
+                                Question question = new Question(questions,id);
                                 questionList.add(question);
                             }
 
