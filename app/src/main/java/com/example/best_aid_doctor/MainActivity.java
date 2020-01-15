@@ -39,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mList;
     String postN = "post_question";
-    String comment ;
+
     TextView tvClick ;
     String key = "post_comment";
+    Question question;
 
     private LinearLayoutManager linearLayoutManager;
     private DividerItemDecoration dividerItemDecoration;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSubmit;
     String type = "give_him_the_fuck_of_all";
     String qu ;
+    String comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
+                            String comment = null;
 
                             JSONArray dataArray = jsonObject.getJSONArray("questions");
                             for (int i = 0; i < dataArray.length(); i++) {
+
+
 
                                 JSONObject dataobj = dataArray.getJSONObject(i);
 
@@ -104,15 +109,25 @@ public class MainActivity extends AppCompatActivity {
                                 String questions = dataobj.getString("questions_description");
                                 String id = dataobj.getString("questions_id");
                                 JSONArray commentArray = dataobj.getJSONArray("comments");
-                                for(int j=0;j<commentArray.length();j++)
+                                if(commentArray.length()!=0)
                                 {
-                                    JSONObject commentobj = commentArray.getJSONObject(j);
-                                    comment = commentobj.getString("comment_description");
-                                    Toast.makeText(MainActivity.this, comment, Toast.LENGTH_SHORT).show();
+                                    for(int j=0;j<commentArray.length();j++)
+                                    {
+
+                                        JSONObject commentobj = commentArray.getJSONObject(j);
+                                        comment = commentobj.getString("comment_description");
+                                        Toast.makeText(MainActivity.this, comment, Toast.LENGTH_SHORT).show();
 
 
+
+
+
+
+                                    } 
                                 }
-                                Question question = new Question(questions,id,comment);
+                                
+                                question = new Question(questions,id,comment);
+
                                 questionList.add(question);
 
                             }
