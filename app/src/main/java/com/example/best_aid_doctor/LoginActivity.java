@@ -34,37 +34,43 @@ public class LoginActivity extends AppCompatActivity {
     EditText etLoginEmail , etLoginPassword ;
     TextView tvShow ;
     String key = "authenticate";
-    //String email ;//= "arifat151151@bscse.uiu.ac.bd";
-    //String password ;//= "accessdenied";
+    SharedPreferences sharedPreferences ;
+    String tokeRecieve ;
 
-    public static final String tokenPass = "blabla";
-    public static final String  idPass = "yo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        SharedPreferences sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE);
+        tokeRecieve = sharedPreferences.getString("token", null);
+
+        if(!tokeRecieve.isEmpty())
+        {
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }
+
+
+            setContentView(R.layout.activity_login);
+            btnLogin=findViewById(R.id.btnLogin);
+            tvSignUp = findViewById(R.id.tvSignUp);
+            etLoginEmail = findViewById(R.id.etLoginEmail);
+            etLoginPassword = findViewById(R.id.etLoginPassword);
 
 
 
-        btnLogin=findViewById(R.id.btnLogin);
-        tvSignUp = findViewById(R.id.tvSignUp);
-        etLoginEmail = findViewById(R.id.etLoginEmail);
-        etLoginPassword = findViewById(R.id.etLoginPassword);
+            tvShow = findViewById(R.id.tvShow);
 
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //            String email = etLoginEmail.getText().toString().trim();
+                    //            String password = etLoginPassword.getText().toString().trim();
+                    login();
 
+                }
+            });
 
-        tvShow = findViewById(R.id.tvShow);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //            String email = etLoginEmail.getText().toString().trim();
-                //            String password = etLoginPassword.getText().toString().trim();
-                login();
-
-            }
-        });
     }
 
     private void login() {
@@ -94,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                                     //              String token = dataobj.getString("token");
                                     String type = dataobj.getString("user_type_Name");
 
-                                    SharedPreferences sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE);
                                     sharedPreferences.edit().putString("token", token).putString("id", id).apply();
 
 

@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,6 +82,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to exit ? ")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                   //     MainActivity.super.onBackPressed();
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog  = builder.create();
+        alertDialog.show();
+
+    }
+
     private void seeQuestions() {
 
 
@@ -104,14 +132,27 @@ public class MainActivity extends AppCompatActivity {
                                 String questions = dataobj.getString("questions_description");
                                 String id = dataobj.getString("questions_id");
                                 JSONArray commentArray = dataobj.getJSONArray("comments");
-                                for(int j=0;j<commentArray.length();j++)
+
+                                if(commentArray.length()> 0)
                                 {
-                                    JSONObject commentobj = commentArray.getJSONObject(j);
-                                    comment = commentobj.getString("comment_description");
-                                    Toast.makeText(MainActivity.this, comment, Toast.LENGTH_SHORT).show();
+                                    for(int j=0;j<commentArray.length();j++)
+                                    {
+                                        JSONObject commentobj = commentArray.getJSONObject(j);
+
+
+                                        comment = commentobj.getString("comment_description");
+
+
+                                        //          Toast.makeText(MainActivity.this, comment, Toast.LENGTH_SHORT).show();
+                                    }
 
 
                                 }
+
+                                else {
+                                    comment = "Doctor will reply soon ";
+                                }
+
                                 Question question = new Question(questions,id,comment);
                                 questionList.add(question);
 
